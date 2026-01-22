@@ -40,20 +40,31 @@ Setup
    NAMES_FILE=
    USE_CORRECTIONS=true
 
-Run
-If not installed (using a local clone)
-- Continuous watch:
+Run (simple)
+First time (fast setup)
+1) cd to the folder:
+   cd /Users/gustavsvendsen/oai-transcribe-drop
+2) Install deps:
+   python3 -m venv .venv
+   . .venv/bin/activate
+   pip install -r requirements.txt
+3) Run once:
+   python3 watch_transcribe.py --once
+
+Already set up
+1) cd /Users/gustavsvendsen/oai-transcribe-drop
+2) (if you use venv) . .venv/bin/activate
+3) Run:
+   python3 watch_transcribe.py --once
+
+Continuous watch (keep running)
   python3 watch_transcribe.py
 
-- One-time batch:
-  python3 watch_transcribe.py --once
-
 If installed as a command (e.g., `oai-transcribe-drop`)
+- Run once:
+  oai-transcribe-drop --once
 - Continuous watch:
   oai-transcribe-drop
-
-- One-time batch:
-  oai-transcribe-drop --once
 
 Diarized meetings (multi-speaker)
 - Set MODEL to gpt-4o-transcribe-diarize
