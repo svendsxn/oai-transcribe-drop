@@ -3,6 +3,7 @@ OpenAI Transcribe Drop Folder
 Overview
 - Drop audio files into input/
 - The script transcribes with gpt-4o-transcribe
+- You can switch to gpt-4o-transcribe-diarize for multi-speaker meetings
 - A new timestamped folder is created inside output/ for each file
 - Each bundle includes the audio, raw transcript, and edited transcript (if enabled)
 - Errors go to failed/
@@ -35,6 +36,16 @@ Run
 
 - One-time batch:
   python3 watch_transcribe.py --once
+
+Diarized meetings (multi-speaker)
+- Set MODEL to gpt-4o-transcribe-diarize
+- Set RESPONSE_FORMAT to diarized_json (auto-selected if not set)
+- Optional: CHUNKING_STRATEGY=auto (recommended for long files)
+- PROMPT is ignored for diarization models
+- Outputs:
+  - <name>.raw.txt (if the API returns text)
+  - <name>.diarized.json (full diarized response)
+  - <name>.diarized.txt (speaker-labeled text)
 
 Notes
 - Supported audio formats: mp3, mp4, mpeg, mpga, m4a, wav, webm
