@@ -1,6 +1,6 @@
-OpenAI Transcribe Drop Folder
+# OpenAI Transcribe Drop Folder
 
-Overview
+## Overview
 - Drop audio files into input/
 - The script transcribes with gpt-4o-transcribe
 - You can switch to gpt-4o-transcribe-diarize for multi-speaker meetings
@@ -8,15 +8,15 @@ Overview
 - Each bundle includes the audio, raw transcript, and edited transcript (if enabled)
 - Errors go to failed/
 
-Works on
+## Works on
 - macOS, Windows, and Linux (Python 3.9+ recommended)
 
-Folder layout
+## Folder layout
 - input/
 - output/
 - failed/
 
-Setup
+## Setup
 1) Create a virtualenv (optional) and install deps:
    python3 -m venv .venv
    . .venv/bin/activate
@@ -40,33 +40,53 @@ Setup
    NAMES_FILE=
    USE_CORRECTIONS=true
 
-Run (simple)
-First time (fast setup)
+## Run (simple)
+### First time (fast setup)
 1) cd to the folder:
+   ```bash
    cd /Users/gustavsvendsen/oai-transcribe-drop
+   ```
 2) Install deps:
+   ```bash
    python3 -m venv .venv
    . .venv/bin/activate
    pip install -r requirements.txt
+   ```
 3) Run once:
+   ```bash
    python3 watch_transcribe.py --once
+   ```
 
-Already set up
-1) cd /Users/gustavsvendsen/oai-transcribe-drop
-2) (if you use venv) . .venv/bin/activate
+### Already set up
+1) cd to the folder:
+   ```bash
+   cd /Users/gustavsvendsen/oai-transcribe-drop
+   ```
+2) (if you use venv):
+   ```bash
+   . .venv/bin/activate
+   ```
 3) Run:
+   ```bash
    python3 watch_transcribe.py --once
+   ```
 
-Continuous watch (keep running)
-  python3 watch_transcribe.py
+### Continuous watch (keep running)
+```bash
+python3 watch_transcribe.py
+```
 
-If installed as a command (e.g., `oai-transcribe-drop`)
+### If installed as a command (e.g., `oai-transcribe-drop`)
 - Run once:
+  ```bash
   oai-transcribe-drop --once
+  ```
 - Continuous watch:
+  ```bash
   oai-transcribe-drop
+  ```
 
-Diarized meetings (multi-speaker)
+## Diarized meetings (multi-speaker)
 - Set MODEL to gpt-4o-transcribe-diarize
 - Set RESPONSE_FORMAT to diarized_json (auto-selected if not set)
 - Optional: CHUNKING_STRATEGY=auto (recommended for long files)
@@ -78,7 +98,7 @@ Diarized meetings (multi-speaker)
   - <name>.diarized.txt (speaker-labeled text)
   - <name>.edited.txt (single format) or <name>.<format>.txt (multiple formats)
 
-Formats
+## Formats
 - meeting_summary
 - action_items
 - internal_email
@@ -88,14 +108,16 @@ Formats
 - sop
 - knowledge_piece
 
-Corrections and names
+## Corrections and names
 - Add corrections and name spellings to corrections.txt (see the NAMES and CORRECTIONS sections)
 - JSON corrections are also supported (key: transcription_corrections)
 
-Notes
+## Notes
 - Supported audio formats: mp3, mp4, mpeg, mpga, m4a, wav, webm
 - Files over 25 MB must be split before upload
 - Each processed file creates a new bundle folder under output/
 
-Example
-  MODEL=gpt-4o-transcribe python3 watch_transcribe.py
+## Example
+```bash
+MODEL=gpt-4o-transcribe python3 watch_transcribe.py
+```
