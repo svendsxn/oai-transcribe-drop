@@ -136,6 +136,31 @@ def apply_corrections(text: str, corrections: list[tuple[str, str]]) -> str:
     return result
 
 
+def prompt_for_input(prompt_text: str, default: str | None = None) -> str:
+    suffix = f" [{default}]" if default else ""
+    return input(f"{prompt_text}{suffix}: ").strip() or (default or "")
+
+
+def prompt_select_formats(default_formats: list[str]) -> list[str]:
+    options = list(FORMAT_TEMPLATES.keys())
+    print("\nSelect output formats (comma-separated numbers).")
+    for idx, name in enumerate(options, start=1):
+        mark = "*" if name in default_formats else " "
+        print(f"  {idx}. [{mark}] {name}")
+    choice = prompt_for_input("Enter numbers", "")
+    if not choice:
+        return default_formats
+    selected: list[str] = []
+    for part in choice.split(","):
+        part = part.strip()
+        if not part.isdigit():
+            continue
+        index = int(part) - 1
+        if 0 <= index < len(options):
+            selected.append(options[index])
+    return selected or default_formats
+
+
 def build_prompt(format_name: str, base_prompt: str | None, tone: str, length: str, audience: str,
                  company_name: str, company_context: str,
                  names: list[str], corrections: list[tuple[str, str]]) -> str:
@@ -347,6 +372,8 @@ def main() -> int:
     parser.add_argument("--names-file", default=os.getenv("NAMES_FILE"))
     parser.add_argument("--use-corrections", action=argparse.BooleanOptionalAction,
                         default=parse_bool(os.getenv("USE_CORRECTIONS", "true"), True))
+    parser.add_argument("--interactive", action="store_true",
+                        default=parse_bool(os.getenv("INTERACTIVE", "false"), False))
     args = parser.parse_args()
 
     load_dotenv(Path(args.root).resolve() / ".env")
@@ -378,6 +405,8 @@ def main() -> int:
     corrections_path = Path(args.corrections_file) if args.corrections_file else None
     names_path = Path(args.names_file) if args.names_file else None
     corrections, names = load_corrections_and_names(corrections_path, names_path)
+    if args.interactive:
+        edit_formats = prompt_select_formats(edit_formats or ["meeting_summary"])
     if args.once:
         process_once(input_dir, output_dir, failed_dir,
                      args.model, response_format, args.prompt,

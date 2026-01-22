@@ -86,6 +86,12 @@ python3 watch_transcribe.py
   oai-transcribe-drop
   ```
 
+### Interactive selection (pick outputs in the terminal)
+```bash
+python3 watch_transcribe.py --once --interactive
+```
+Select output formats by entering the numbers (comma-separated).
+
 ## Diarized meetings (multi-speaker)
 - Set MODEL to gpt-4o-transcribe-diarize
 - Set RESPONSE_FORMAT to diarized_json (auto-selected if not set)
