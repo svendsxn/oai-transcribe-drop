@@ -1,0 +1,47 @@
+# Corrections for edited meeting output
+# Add your corrections below this line. Use any format you prefer.
+# Tip: If you reference a speaker, use their full name.
+
+NAMES:
+- Mads Tue Munk
+- Chris Olsen
+- Michael Jensen
+- Henrik Holm Mortensen
+- Mads Kongshaug
+- Allan Jørgensen
+- Thomas Wendicke
+- My Phuong Hoang
+- Lykke Degn Johannsen
+- Henning Juul Hansen
+- Jonas Asmussen
+- Janus Larsen
+- Søren Hansen
+- Søren Worsøe
+- Julie Nielsen
+- Klaus Andersen
+- Mikael Andersen
+- Peter Supik
+- Rene Krogh
+- Erik Wind Petersen
+- Simon Riisgaard Andersen
+- Hans Jørgen Baden
+- Simon Spindler
+- Reka Supik
+- Line Kjeldsen
+- Mathilde Straarup Iversen
+- Gustav Svendsen
+- Henrik Aarup Svendsen
+- Hans Meijer
+- Robert M. Donnelly
+- Magnus Svendsen
+- Morten Sejrskilde Pedersen
+- Mie Moslund
+- Lotte Svendsen
+- Helle Hansen
+
+CORRECTIONS:
+- Motor One / Moto One -> MODU ONE
+- Motor / Moto -> MODU
+- hytter -> Hydra
+- Multipurpose Board / multipurpose table -> MODU Multi-Purpose Port
+- kugleskærmsventil -> kugleskaldsventil
